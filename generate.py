@@ -3,6 +3,21 @@ import os
 import re
 from prompt_toolkit import prompt
 from cc_generate import typescript, python, rust
+from cc_generate.prompt_widgets import checkboxlist_dialog
+
+def get_language_selection():
+    """Prompt the user to select languages for initialization."""
+    return checkboxlist_dialog(
+        title="Which languages/packages would you like to initialize?",
+        values=[
+            ('typescript', 'TypeScript'),
+            ('rust', 'Rust'),
+            ('python', 'Python'),
+            ('go', 'Go'),
+            ('pytorch', 'PyTorch')
+        ],
+        default_values=['typescript', 'rust', 'python']
+        ).run()
 
 def generate_folder_name(challenge_name, prefix_number):
     """Generate a folder name with a prefix number from the challenge name."""
@@ -41,9 +56,18 @@ def create_challenge_folder_and_readme(challenge_name, challenge_description):
         readme_file.write(f"# {challenge_name}\n\n")
         readme_file.write(cleaned_desc)
 
-    typescript.setup_typescript(folder_name)
-    python.setup_python(folder_name)
-    rust.setup_rust(folder_name)
+    selected_languages = get_language_selection()
+
+    if 'typescript' in selected_languages:
+        typescript.setup_typescript(folder_name)
+    if 'rust' in selected_languages:
+        rust.setup_rust(folder_name)
+    if 'python' in selected_languages:
+        python.setup_python(folder_name)
+    if 'go' in selected_languages:
+        print("generating go")
+    if "pytorch" in selected_languages:
+        print ("generating pytorch")
 
 def main():
     # Ask the user for a challenge name and description
