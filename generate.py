@@ -2,6 +2,7 @@
 import os
 import re
 from prompt_toolkit import prompt
+from cc_generate import typescript
 
 def generate_folder_name(challenge_name, prefix_number):
     """Generate a folder name with a prefix number from the challenge name."""
@@ -39,6 +40,9 @@ def create_challenge_folder_and_readme(challenge_name, challenge_description):
     with open(readme_path, 'w') as readme_file:
         readme_file.write(f"# {challenge_name}\n\n")
         readme_file.write(cleaned_desc)
+
+    typescript.setup_typescript(folder_name)
+    
 
 def main():
     # Ask the user for a challenge name and description
