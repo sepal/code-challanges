@@ -2,7 +2,7 @@
 import os
 import re
 from prompt_toolkit import prompt
-from cc_generate import typescript, python, rust
+from cc_generate import typescript, python, rust, go
 from cc_generate.prompt_widgets import checkboxlist_dialog
 
 def get_language_selection():
@@ -65,7 +65,7 @@ def create_challenge_folder_and_readme(challenge_name, challenge_description):
     if 'python' in selected_languages:
         python.setup_python(folder_name)
     if 'go' in selected_languages:
-        print("generating go")
+        go.setup_go(folder_name)
     if "pytorch" in selected_languages:
         print ("generating pytorch")
 
