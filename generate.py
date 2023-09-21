@@ -67,7 +67,7 @@ def create_challenge_folder_and_readme(challenge_name, challenge_description):
     if 'go' in selected_languages:
         go.setup_go(folder_name)
     if "pytorch" in selected_languages:
-        print ("generating pytorch")
+        python.setup_pytorch(folder_name)
 
 def main():
     # Ask the user for a challenge name and description
