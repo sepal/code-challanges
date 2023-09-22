@@ -4,9 +4,9 @@ import fs from "fs";
 
 describe("FizzBuzz", () => {
   test("output should be correct from number 0 to 100", () => {
-    const expected = fs.readFileSync("../expected.json");
+    const expected = JSON.parse(fs.readFileSync("../expected.json", "utf-8"));
 
-    const output = JSON.stringify(FizzBuzz(1, 100));
+    const output = FizzBuzz(1, 100);
     expect(output).toEqual(expected);
   });
 });
