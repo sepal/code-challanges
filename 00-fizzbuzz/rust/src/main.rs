@@ -1,3 +1,6 @@
+use fizzbuzz::fizzbuzz;
+
 fn main() {
-    println!("Hello, world!");
+    let result = fizzbuzz(1, 100);
+    println!("{:?}", result)
 }
