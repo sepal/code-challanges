@@ -1,3 +1,4 @@
 fn main() {
-    println!("Hello, world!");
+    let res = addOperators(123, 6)
+    println!("{?}", res);
 }

@@ -1,5 +1,5 @@
 
-operators = ["*",  "/", "+", "-",]
+operators = ["+", "-", "*"]
 
 
 def splitNumber(n: int) -> list[int]:
@@ -32,17 +32,35 @@ def test_operation(digits: list[int], operator: str):
     return 0
 
 
+def backtrack(last_val: int, i: int, source: list[int], target: str, expression: str, result: [str]):
+    if i == len(source):
+        if last_val == target:
+            result.append(expression)
+            return result
+        return result
+
+    backtrack(last_val * source[i],  i+1, source, target,
+              f'{expression}*{source[i]}', result)
+    backtrack(last_val + source[i],  i+1, source, target,
+              f'{expression}+{source[i]}', result)
+    backtrack(last_val - source[i],  i+1, source, target,
+              f'({expression}-{source[i]})', result)
+    return result
+
+
 def addOperators(source: int, target: int):
     digits = splitNumber(source)
 
     solutions = []
-    for op in operators:
-        if test_operation(digits, op) == target:
-            str_digits = [str(x) for x in digits]
-            operation_string = op.join(str_digits)
-            solutions.append(operation_string)
+    # for op in operators:
+    #     if test_operation(digits, op) == target:
+    #         str_digits = [str(x) for x in digits]
+    #         operation_string = op.join(str_digits)
+    #         solutions.append(operation_string)
+
+    solutions = backtrack(digits[0], 1, digits, target, str(digits[0]), [])
 
     return solutions
 
 
-print(addOperators(123, 6))
+print(addOperators(124, 12))
