@@ -1,2 +1,4 @@
-# code-challanges
-A repo containing favrious code challanges, solved in different languages
+# code-challenges
+A repo containing various code challenges, solved in different programming languages.
+
+Most are taken from the [rendezvous with cassidoo](https://cassidoo.co/newsletter/) newsletter.
